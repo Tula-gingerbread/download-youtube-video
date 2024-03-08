@@ -17,23 +17,23 @@ def download(link: str, download_to: str|None=None, convert_to_mp3: bool=False) 
 
     video = YouTube(link)
 
-    filename = ''.join([char  for char in video.title  if char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 '])
+    filename = ''.join([char  for char in video.title  if char in 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'])
 
     try:
-        video.streams.get_highest_resolution().download(filename=filename)
+        video.streams.get_highest_resolution().download(filename=filename + '.mp4')
     except Exception as ex:
         print(f'Error! {ex}')
-        return False
+        return (False)
     else:
         print('Download success.')
     
     if convert_to_mp3:
-        out_filename = filename + '.mp3'
+        exit_code = subprocess.call(
+            ['ffmpeg', '-i', f'{filename}.mp4', '-vn', '-acodec', 'libmp3lame', '-ab', '256k', f'{filename}.mp3']
+            )
+        return (True, exit_code)
 
-        exit_code = subprocess.call(['ffmpeg', '-i', filename + mp4, '-vn', '-acodec', 'libmp3lame', '-ab', '256k', out_filename])
-        return True, exit_code
-
-    return True
+    return (True)
 
 
 
