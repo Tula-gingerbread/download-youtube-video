@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-import string
 
 try:
     from pytube import YouTube
