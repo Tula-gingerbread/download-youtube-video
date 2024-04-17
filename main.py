@@ -47,7 +47,10 @@ def download(link: str, download_to: str|None=None, convert_to_mp3: bool=False,
     video = YouTube(link)
 
     # Filtering video name
-    filename = ''.join([char  for char in video.title if char in 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'])
+    allowed_symbols = 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ . '.replace(' ', '') + ' '
+    filename = ''.join(
+        [char for char in video.title if char in allowed_symbols]
+    ).strip()
 
     try:
         video.streams.get_highest_resolution().download(filename=filename + '.mp4')
@@ -66,7 +69,6 @@ def download(link: str, download_to: str|None=None, convert_to_mp3: bool=False,
         return (True, exit_code)
 
     return (True, 0)
-
 
 
 def main():
