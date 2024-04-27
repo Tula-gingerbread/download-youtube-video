@@ -40,7 +40,7 @@ def download(link: str, download_to: str|None=None, convert_to_mp3: bool=False,
             smart_print('Unknown directory!')
             return (False, 1)
 
-    if check_link and not link.startswith(('https://www.youtube.com/', 'https://youtu.be/')):
+    if check_link and not link.startswith(('https://www.youtube.com/', 'https://youtu.be/', 'https://youtube.com/')):
         smart_print('YT link was expected, an unknown link was received.')
         return (False, 2)
 
