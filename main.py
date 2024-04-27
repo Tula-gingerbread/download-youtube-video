@@ -31,7 +31,7 @@ def download(link: str, download_to: str|None=None, convert_to_mp3: bool=False,
 
     def smart_print(*args, **kwargs):
         if write_output:
-            print(args, kwargs)
+            print(*args, *kwargs)
 
     if download_to:
         if os.path.isdir(download_to):

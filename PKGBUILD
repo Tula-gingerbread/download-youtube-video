@@ -9,7 +9,7 @@ url='https://github.com/Tula-gingerbread/download-youtube-video'
 depends=('python-pytube')
 optdepends=('ffmpeg: converting to mp3')
 source=("file://${srcdir}/main.py")
-b2sums=('8fbfdbf17df3b9e495d31392cb5658655284c77a8396babab6e6317a74022cb94d0156745654868ee22db6b15f84a541a9395af4851c15cbccb5d7ed72a53841')
+b2sums=('a1d5ee245db3849945fa4080d643b0eb70f7ae637eebb1bc2413806a74eb93d0d273a8c8d886d2d72d09b3c640dd0a40680ba637c62f1e9ea05bfca808cd5bb2')
 
 package() {
 	install -Dm755 main.py "${pkgdir}/usr/bin/download-yt-video"
