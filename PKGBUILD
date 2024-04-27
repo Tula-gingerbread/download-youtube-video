@@ -1,6 +1,6 @@
 # Maintainer: Ivan <megagoodman@duck.com>
 pkgname='download-yt-video'
-pkgver=1.2
+pkgver=1.3
 pkgrel=2
 pkgdesc='YouTube download helper'
 arch=('any')
